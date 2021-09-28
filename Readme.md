@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг»
 
-* Студент: [Станислав Шорохов](https://up.htmlacademy.ru/javascript/24/user/1896357).
-* Наставник: `Неизвестно`.
+* Студент: [Станислав Шорохов](https://htmlacademy.ru/profile/id1896357).
+* Наставник: [Артём Рудов](https://htmlacademy.ru/profile/id345377).
 
 ---
 

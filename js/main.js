@@ -1,4 +1,4 @@
-// src https://myrusakov.ru/js-random-numbers.html 
+// src https://myrusakov.ru/js-random-numbers.html
 function getRandomInRange(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }

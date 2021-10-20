@@ -14,18 +14,13 @@ function getRandom(random) {
   return Math.floor(Math.random() * random);
 }
 
-const avatar = [
-  'img/avatars/user01.png',
-  'img/avatars/user02.png',
-  'img/avatars/user03.png',
-  'img/avatars/user04.png',
-  'img/avatars/user05.png',
-  'img/avatars/user06.png',
-  'img/avatars/user07.png',
-  'img/avatars/user08.png',
-  'img/avatars/user09.png',
-  'img/avatars/user10.png',
-];
+const getAvatar = () => {
+  const avatarNumber = getRandomInRange(1, 10);
+  if (avatarNumber >= 10) {
+    return `img/avatars/user${avatarNumber}.png`;
+  }
+  return `img/avatars/user${`0${  avatarNumber}`}.png`;
+};
 
 const type = [
   'palace',
@@ -85,7 +80,7 @@ const OBJ_COUNT = 10;
 
 const createObj = () => ({
   author: {
-    avatar: avatar.shift(),
+    avatar: getAvatar,
   },
   offer: {
     title: 'Аренда помещения',
@@ -109,3 +104,4 @@ const createObj = () => ({
 const similarObj = Array.from({length: OBJ_COUNT}, createObj);
 
 console.log(similarObj);
+

@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-console */
 // src https://myrusakov.ru/js-random-numbers.html
 function getRandomInRange(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -10,19 +8,28 @@ function getRandomFloat(min, max, floatNuber) {
   return (Math.random() * (max - min) + min).toFixed(floatNuber);
 }
 
-function getRandom(random) {
-  return Math.floor(Math.random() * random);
-}
+const MIN_USERS = 1;
+const MAX_USERS = 9;
 
-const getAvatar = () => {
-  const avatarNumber = getRandomInRange(1, 10);
-  if (avatarNumber >= 10) {
-    return `img/avatars/user${avatarNumber}.png`;
-  }
-  return `img/avatars/user${`0${  avatarNumber}`}.png`;
-};
+const MIN_PRICE = 1000;
+const MAX_PRICE = 10000;
 
-const type = [
+const MIN_ROOMS = 1;
+const MAX_ROOMS = 5;
+
+const MIN_GUESTS = 0;
+const MAX_GUESTS = 6;
+
+const TITLE = 'Аренда помещения';
+
+const DESCRIPTIONS = [
+  'Сдам уютное помещение для порядочных жильцов.',
+  'Срочно требуется жилец!',
+  'Сдам жилье.',
+  'Аренда помещения.',
+];
+
+const TYPES = [
   'palace',
   'flat',
   'house',
@@ -30,19 +37,19 @@ const type = [
   'hotel',
 ];
 
-const checkin = [
+const CHECKIN = [
   '12:00',
   '13:00',
   '14:00',
 ];
 
-const checkout = [
+const CHECKOUT = [
   '12:00',
   '13:00',
   '14:00',
 ];
 
-const allFeatures = [
+const ALL_FEATURES = [
   'wifi',
   'dishwasher',
   'parking',
@@ -50,6 +57,15 @@ const allFeatures = [
   'elevator',
   'conditioner',
 ];
+
+const ALL_PHOTOS = [
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
+];
+
+
+const getAvatar = () => `img/avatars/user0${getRandomInRange(MIN_USERS, MAX_USERS)}.png`;
 
 function getArray(elements) {
   const maxElements = elements.length;
@@ -67,41 +83,34 @@ function getArray(elements) {
   return newArray;
 }
 
-const allPhotos = [
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
-];
-
-
 const getRandomArrayElement = (elements) => elements[_.random(0, elements.length - 1)];
 
-const OBJ_COUNT = 10;
+const locationLat = getRandomFloat(35.65000, 35.70000, 5);
+const locationLng = getRandomFloat(139.70000, 139.80000, 5);
 
 const createObj = () => ({
   author: {
     avatar: getAvatar,
   },
   offer: {
-    title: 'Аренда помещения',
-    address: `Адрес по координатам: ${  getRandomFloat(35.65000, 35.70000, 5)  } и ${  getRandomFloat(139.70000, 139.80000, 5)}`,
-    price: getRandomInRange(1000, 10000),
-    type: getRandomArrayElement(type),
-    rooms: getRandomInRange(1, 5),
-    guests: getRandomInRange(2, 7),
-    checkin: getRandomArrayElement(checkin),
-    checkout: getRandomArrayElement(checkout),
-    features: getArray(allFeatures),
-    description: 'Сдам уютное помещение для порядочных жильцов.',
-    photos: getArray(allPhotos),
+    title: TITLE,
+    address: `Адрес по координатам: ${  locationLat  } и ${  locationLng}`,
+    price: getRandomInRange(MIN_PRICE, MAX_PRICE),
+    type: getRandomArrayElement(TYPES),
+    rooms: getRandomInRange(MIN_ROOMS, MAX_ROOMS),
+    guests: getRandomInRange(MIN_GUESTS, MAX_GUESTS),
+    checkin: getRandomArrayElement(CHECKIN),
+    checkout: getRandomArrayElement(CHECKOUT),
+    features: getArray(ALL_FEATURES),
+    description: getRandomArrayElement(DESCRIPTIONS),
+    photos: getArray(ALL_PHOTOS),
   },
   location: {
-    lat: getRandomFloat(35.65000, 35.70000, 5),
-    lng: getRandomFloat(139.70000, 139.80000, 5),
+    lat: locationLat,
+    lng: locationLng,
   },
 });
 
-const similarObj = Array.from({length: OBJ_COUNT}, createObj);
+const similarObj = Array.from({length: MAX_USERS}, createObj);
 
-console.log(similarObj);
-
+similarObj;

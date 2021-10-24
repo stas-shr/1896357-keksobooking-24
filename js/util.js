@@ -25,6 +25,22 @@ function getArray(elements) {
   return newArray;
 }
 
+function getPhotos(mainLink, photos) {
+  const maxPhotos = photos.length;
+  const lengthOfArray = getRandomInRange(1, maxPhotos);
+  const newArray = [];
+
+  while (newArray.length < lengthOfArray) {
+    const indexOfPhoto = getRandomInRange(0, maxPhotos - 1);
+    const photo = `${mainLink }${photos[indexOfPhoto]}`;
+
+    if (!newArray.includes(photo)) {
+      newArray.push(photo);
+    }
+  }
+  return newArray;
+}
+
 const getRandomArrayElement = (elements) => elements[_.random(0, elements.length - 1)];
 
-export {getRandomInRange, getRandomFloat, getArray, getRandomArrayElement};
+export {getRandomInRange, getRandomFloat, getArray, getRandomArrayElement, getPhotos};

@@ -1,4 +1,4 @@
-import {getRandomInRange, getRandomFloat, getArray, getRandomArrayElement} from './util.js';
+import {getRandomInRange, getRandomFloat, getArray, getRandomArrayElement, getPhotos} from './util.js';
 
 const MIN_PRICE = 1000;
 const MAX_PRICE = 10000;
@@ -60,12 +60,13 @@ const ALL_FEATURES = [
   'conditioner',
 ];
 
-const ALL_PHOTOS = [
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
-];
+const MAIN_LINK_PHOTOS = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/';
 
+const ALL_PHOTOS = [
+  'duonguyen-8LrGtIxxa4w.jpg',
+  'brandon-hoogenboom-SNxQGWxZQi0.jpg',
+  'claire-rendall-b6kAwr1i0Iw.jpg',
+];
 
 const LOCATION_LAT_X = 35.65000;
 const LOCATION_LAT_Y = 35.70000;
@@ -73,10 +74,9 @@ const LOCATION_LNG_X = 139.70000;
 const LOCATION_LNG_Y = 139.80000;
 const LOCATION_DIGITS = 5;
 
-
 const createObj = () => {
-  const locationLat = getRandomFloat(LOCATION_LAT_X, LOCATION_LAT_Y, LOCATION_DIGITS);
-  const locationLng = getRandomFloat(LOCATION_LNG_X, LOCATION_LNG_Y, LOCATION_DIGITS);
+  const lat = getRandomFloat(LOCATION_LAT_X, LOCATION_LAT_Y, LOCATION_DIGITS);
+  const lng = getRandomFloat(LOCATION_LNG_X, LOCATION_LNG_Y, LOCATION_DIGITS);
 
   return {
     author: {
@@ -84,7 +84,7 @@ const createObj = () => {
     },
     offer: {
       title: TITLE,
-      address: `Адрес по координатам: ${  locationLat  } и ${  locationLng}`,
+      address: `Адрес по координатам: ${lat} и ${lng}`,
       price: getRandomInRange(MIN_PRICE, MAX_PRICE),
       type: getRandomArrayElement(TYPES),
       rooms: getRandomInRange(MIN_ROOMS, MAX_ROOMS),
@@ -93,11 +93,11 @@ const createObj = () => {
       checkout: getRandomArrayElement(CHECKOUT),
       features: getArray(ALL_FEATURES),
       description: getRandomArrayElement(DESCRIPTIONS),
-      photos: getArray(ALL_PHOTOS),
+      photos: getPhotos(MAIN_LINK_PHOTOS, ALL_PHOTOS),
     },
     location: {
-      lat: locationLat,
-      lng: locationLng,
+      lat,
+      lng,
     },
   };
 };

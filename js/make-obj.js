@@ -11,20 +11,18 @@ const OFFER_TYPES = {
 const template = document.querySelector('#card').content.querySelector('.popup');
 const mapBlock = document.querySelector('.map__canvas');
 const fragment = document.createDocumentFragment();
+const objElement = template.cloneNode(true);
+const hideElement = (className) => objElement.querySelector(className).classList.add('hidden');
+const addContent = (content, classObj) => {
+  if (content) {
+    objElement.querySelector(classObj).textContent = content;
+  } else {
+    hideElement(classObj);
+  }
+};
 
 const renderObj = ({author, offer}) => {
-  const objElement = template.cloneNode(true);
-  const hideElement = (className) => objElement.querySelector(className).classList.add('hidden');
-
   const popupFeaturesList = objElement.querySelector('.popup__features').querySelectorAll('.popup__feature');
-
-  const addContent = (content, classObj) => {
-    if (content) {
-      objElement.querySelector(classObj).textContent = content;
-    } else {
-      hideElement(classObj);
-    }
-  };
 
   addContent(offer.title, '.popup__title');
   addContent(offer.address, '.popup__text--address');

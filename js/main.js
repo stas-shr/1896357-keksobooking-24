@@ -1,7 +1,7 @@
 import {addObj} from './make-obj.js';
-//import {activateForm, diactivateForm} from './form.js';
+import {activateForm, diactivateForm} from './form.js';
 
-// activateForm();
-// diactivateForm();
+diactivateForm();
+activateForm();
 
 addObj(0);

@@ -21,6 +21,14 @@ const addContent = (content, classObj) => {
   }
 };
 
+const makeFeaturePopup = (offer) => (popupFeaturesItem) => {
+  const isNecessary = offer.features.some((objFeature) => popupFeaturesItem.classList.contains(`popup__feature--${objFeature}`));
+
+  if (!isNecessary) {
+    popupFeaturesItem.remove();
+  }
+};
+
 const renderObj = ({author, offer}) => {
   const popupFeaturesList = objElement.querySelector('.popup__features').querySelectorAll('.popup__feature');
 
@@ -48,15 +56,7 @@ const renderObj = ({author, offer}) => {
   }
 
   if (offer.features) {
-    popupFeaturesList.forEach((popupFeaturesItem) => {
-      const isNecessary = offer.features.some(
-        (objFeature) => popupFeaturesItem.classList.contains(`popup__feature--${objFeature}`),
-      );
-
-      if (!isNecessary) {
-        popupFeaturesItem.remove();
-      }
-    });
+    popupFeaturesList.forEach(makeFeaturePopup);
   } else {
     hideElement('.popup__features');
   }
